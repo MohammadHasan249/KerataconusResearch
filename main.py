@@ -3,5 +3,13 @@ import sklearn
 
 data = pd.read_csv("dataset.csv")
 
-print(data.describe())
+print(dir(data))
+# print(data.describe())
+
+# step 1
+
+# step 2
+
+
+
 
