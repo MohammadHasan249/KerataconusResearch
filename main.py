@@ -7,24 +7,16 @@ import matplotlib as plt
 
 
 data = pd.read_csv("dataset.csv")
-data = data.apply(LabelEncoder().fit_transform)
 # 448 columns / dimensions -- reduce this to 8
 # 80.49% of our variance
-print(data.shape)
-
 X = data.values
-print(X.shape)
 
-pca_448 = PCA(n_components=8, random_state=2023)
-pca_448.fit(X)
-X_pca_448 = pca_448.transform(X)
+pca = PCA(n_components=8, random_state=2023)
+pca.fit(X)
+X_scaled = pca.transform(X)
 
-# print(X_pca_448.shape)
-# print(sum(pca_448.explained_variance_ratio_ * 100))
-
-print(X_pca_448)
-
-
+print(X_scaled.shape)
+print(sum(pca.explained_variance_ratio_ * 100))
 
 
 # step 1 - PCA 
@@ -32,13 +24,16 @@ print(X_pca_448)
 # TODO: Mouayad and Natasha
 
     # ------ implement it here ------
-# pca = decomposition.PCA(n_components=3)
-# pca.fit(X)
-# X = pca.transform(X)
+def perform_PCA(data, n_components=8):
+    data = data.select_dtypes(include=[np.number])
+    pca = PCA(n_components=8, random_state=2023)
+    pca.fit(X)
+    X_scaled = pca.transform(X)
 
-# print(X.shape)
+    print(X_scaled.shape)
+    print(sum(pca.explained_variance_ratio_ * 100))
 
-
+    return X_scaled
 
 def plot_pca(data):
     from matplotlib import pyplot as MPL
@@ -49,30 +44,14 @@ def plot_pca(data):
     ax1.plot(data_resc[:, 0], data_resc[:, 1], '.', mfc=clr1, mec=clr1)
     MPL.show()
 
-
-
-
-
-# >>> df = "~/keratoconus dataset.csv"
-# >>> data = NP.loadtxt(df, delimiter=',')
-# >>> # remove class labels
-# >>> data = data[:,:-1]
-# >>> plot_pca(data)
-
-
-
-
-    # pass
-
-
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 # step 2 - Archetypal Analysis
 # Archetypal analysis on these principal components using python package 'archetypes'.
 # TODO: Mohammad
 
 # I'm doing this in another file (`archetypes_analysis.py`) and will import it here.
+
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
