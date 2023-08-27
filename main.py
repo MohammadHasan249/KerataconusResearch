@@ -110,14 +110,6 @@ def test_model_performance(X):
     plt.show()
 
 
-
-
-
-
-
-
-
-
 # main function
 
 if __name__ == "__main__":
